@@ -4,6 +4,8 @@ from recruit_gen.pipeline import (
 )
 import json
 from recruit_gen.pipeline import run_pipeline
+from hypothesis import given, strategies as st
+
 
 
 def test_talent_pyramid_shape():
@@ -29,3 +31,21 @@ def test_golden_seed42():
         golden = json.load(f)
 
     assert fresh == golden
+
+
+
+# @given(seed=st.integers(min_value=0, max_value=2**32 - 1))
+# def test_every_recruit_has_positive_height(seed):
+#     recruits = run_pipeline(seed=seed, count=20)
+
+#     for recruit in recruits:
+#         assert recruit['physicals'] > 0
+
+
+@given(seed=st.integers(min_value=0, max_value=2**32 - 1))
+def test_every_talent_in_unit_range(seed):
+    recruits = run_pipeline(seed=seed, count=20)
+
+    for recruit in recruits:
+        assert 0 <= recruit['talent'] < 1
+        # assert 0 <= recruit['talent'] < 0.5   # deliberately wrong. talent can exceed 0.5
