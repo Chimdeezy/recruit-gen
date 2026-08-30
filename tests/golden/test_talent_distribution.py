@@ -2,19 +2,11 @@ import numpy as np
 from recruit_gen.pipeline import (
     run_pipeline
 )
-from recruit_gen.cli import (
-    write_csv
-)
-import typer
-import csv
 import json
 from recruit_gen.pipeline import run_pipeline
 
 
 def test_talent_pyramid_shape():
-    rng = np.random.default_rng(42)
-
-    # draw 1000 talents using your stage's logic
     recruits = run_pipeline(count=1000, seed = 42)
 
     # print(recruits[0])
