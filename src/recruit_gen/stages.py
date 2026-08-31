@@ -1,4 +1,4 @@
-
+from recruit_gen.models import Recruit
 
 def class_shape(count: int, rng) -> list[dict]:
     return [{} for _ in range(count)]   # stub: N blank recruits
@@ -13,10 +13,15 @@ def positions(recruits: list[dict], rng) -> list[dict]:
         r["position"] = "PG"   # stub: everyone's a point guard for now
     return recruits
 
-def physicals(recruits: int, rng) -> list[dict]:
+def physicals(recruits: list[dict], rng) -> list[Recruit]:
+    recruits_out = []
     for r in recruits:
-        r["physicals"] = "6'1"   # stub
-    return recruits
+        recruit = Recruit(
+            height = 79,
+            weight = 190
+        )
+        recruits_out.append(recruit)
+    return recruits_out
 
 def talent(recruits, rng, exponent=3):
     for r in recruits:

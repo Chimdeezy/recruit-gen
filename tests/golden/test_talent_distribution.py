@@ -1,11 +1,10 @@
 import numpy as np
+import json
+from hypothesis import given, strategies as st
+
 from recruit_gen.pipeline import (
     run_pipeline
 )
-import json
-from recruit_gen.pipeline import run_pipeline
-from hypothesis import given, strategies as st
-
 
 
 def test_talent_pyramid_shape():
